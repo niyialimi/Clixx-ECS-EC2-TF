@@ -5,6 +5,7 @@ pipeline {
    //    credentials credentialType: 'com.cloudbees.jenkins.plugins.awscredentials.AWSCredentialsImpl', defaultValue: 'automation_terraform', name: 'AWS', required: false
    // }
 
+
    environment {
       PATH = "${PATH}:${getTerraformPath()}"
    }
@@ -45,11 +46,11 @@ pipeline {
          }
       }
 
-      stage('Terraform Destroy'){
-         steps {
-            sh "terraform destroy -auto-approve"
-         }
-      }
+      // stage('Terraform Destroy'){
+      //    steps {
+      //       sh "terraform destroy -auto-approve"
+      //    }
+      // }
    }
 
    post {
