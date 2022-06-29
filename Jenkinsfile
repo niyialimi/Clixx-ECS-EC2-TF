@@ -39,17 +39,23 @@ pipeline {
          }
       }
 
-      // stage('Terraform Apply'){
-      //    steps {
-      //       sh "terraform apply  -input=false tfplan"
-      //    }
-      // }
-
-      stage('Terraform Destroy'){
+      stage('Terraform Apply'){
          steps {
-            sh "terraform destroy -auto-approve"
+            sh "terraform apply  -input=false tfplan"
          }
       }
+
+      stage('Terraform Destroy Docker Instance'){
+         steps {
+            sh "terraform destroy -target aws_instance.Docker-Launch"
+         }
+      }
+
+      // stage('Terraform Destroy'){
+      //    steps {
+      //       sh "terraform destroy -auto-approve"
+      //    }
+      // }
    }
 
    post {

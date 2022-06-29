@@ -105,7 +105,7 @@ resource "aws_instance" "docker_ec2" {
   }))
 
   tags = {
-    Name = "Docker Launch"
+    Name = "Docker-Launch"
   }
   subnet_id                   = aws_subnet.public_subnet.*.id[0]
   associate_public_ip_address = true
