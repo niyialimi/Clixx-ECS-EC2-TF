@@ -1,5 +1,5 @@
 resource "aws_route53_record" "clixx-app" {
-  zone_id = aws_route53_zone.primary.zone_id
+  zone_id = var.zone_id
   name    = "dev.clixx-niyialimi.com"
   type    = "CNAME"
   ttl     = "300"
