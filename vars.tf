@@ -105,3 +105,6 @@ variable "ami_id" {
   default = "ami-0022f774911c1d690"
 }
 
+variable "zone_id" {
+  default = "Z00607475X0I6ULEJXAZ"
+}
