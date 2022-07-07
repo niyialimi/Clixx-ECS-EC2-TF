@@ -1,8 +1,8 @@
-# #==== Create Repository ======#
-# resource "aws_ecr_repository" "clixx_ecr_repo" {
-#   name                 = var.repository_name
-#   image_tag_mutability = "MUTABLE"
-# }
+#==== Create Repository ======#
+resource "aws_ecr_repository" "clixx_ecr_repo" {
+  name                 = var.repository_name
+  image_tag_mutability = "MUTABLE"
+}
 
 #==== Create Cluster ======#
 resource "aws_ecs_cluster" "clixx_cluster" {
@@ -33,8 +33,8 @@ resource "aws_ecs_task_definition" "task_definition" {
     {
       name = "Clixx-Web-Task-Container"
       #image     = "${aws_ecr_repository.clixx_ecr_repo.repository_url}:clixxvpc-img-tf-1.0"
-      # image       = "${local.test_tf_cedentials.test_account_id}.dkr.ecr.${var.AWS_REGION}.amazonaws.com/${var.repository_name}:${var.REPO_TAG}-1.0"
-      image       = "743650199199.dkr.ecr.${var.AWS_REGION}.amazonaws.com/${var.repository_name}:${var.REPO_TAG}-1.0"
+      image = "${local.test_tf_cedentials.test_account_id}.dkr.ecr.${var.AWS_REGION}.amazonaws.com/${var.repository_name}:${var.REPO_TAG}-1.0"
+      # image       = "743650199199.dkr.ecr.${var.AWS_REGION}.amazonaws.com/${var.repository_name}:${var.REPO_TAG}-1.0"
       cpu         = 10
       memory      = 300
       networkMode = "bridge"
