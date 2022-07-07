@@ -36,30 +36,20 @@ resource "aws_security_group" "webserver_sg" {
   }
 }
 
-resource "aws_security_group_rule" "ingress_webserver_sg_http" {
-  type              = "ingress"
-  from_port         = 80
-  to_port           = 80
-  protocol          = "tcp"
-  cidr_blocks       = ["0.0.0.0/0"]
-  security_group_id = aws_security_group.webserver_sg.id
-}
-
-
 resource "aws_security_group_rule" "ingress_webserver_sg_all" {
-  type              = "ingress"
-  from_port         = 0
-  to_port           = 0
-  cidr_blocks       = ["0.0.0.0/0"]
-  protocol          = "-1"
-  security_group_id = aws_security_group.webserver_sg.id
+  type                     = "ingress"
+  from_port                = 80
+  to_port                  = 80
+  protocol                 = "tcp"
+  security_group_id        = aws_security_group.webserver_sg.id
+  source_security_group_id = aws_security_group.elb_bastion_sg.id
 }
 
 resource "aws_security_group_rule" "ingress_webserver_sg_allin" {
   type                     = "ingress"
-  from_port                = 0
-  to_port                  = 0
-  protocol                 = "-1"
+  from_port                = 22
+  to_port                  = 22
+  protocol                 = "tcp"
   security_group_id        = aws_security_group.webserver_sg.id
   source_security_group_id = aws_security_group.elb_bastion_sg.id
 }
