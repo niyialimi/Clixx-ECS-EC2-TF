@@ -39,11 +39,11 @@ pipeline {
          }
       }
 
-      stage('Terraform Apply'){
-         steps {
-            sh "terraform apply  -input=false tfplan"
-         }
-      }
+      // stage('Terraform Apply'){
+      //    steps {
+      //       sh "terraform apply  -input=false tfplan"
+      //    }
+      // }
 
       // stage('Terraform Destroy Docker Instance'){
       //    steps {
@@ -51,11 +51,11 @@ pipeline {
       //    }
       // }
 
-      // stage('Terraform Destroy'){
-      //    steps {
-      //       sh "terraform destroy -auto-approve"
-      //    }
-      // }
+      stage('Terraform Destroy'){
+         steps {
+            sh "terraform destroy -auto-approve"
+         }
+      }
    }
 
    post {
