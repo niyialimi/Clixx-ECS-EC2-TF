@@ -1,6 +1,6 @@
 # #==== Create Repository ======#
 # resource "aws_ecr_repository" "clixx_ecr_repo" {
-#   name                 = "${var.repository_name}"
+#   name                 = var.repository_name
 #   image_tag_mutability = "MUTABLE"
 # }
 
@@ -20,7 +20,8 @@ resource "time_sleep" "docker" {
 #==== Create Task ======#
 resource "aws_ecs_task_definition" "task_definition" {
   depends_on = [
-    time_sleep.docker
+    time_sleep.docker,
+    aws_ecr_repository.clixx_ecr_repo
   ]
   family             = "Clixx-Web-Task"
   execution_role_arn = aws_iam_role.ecs_task_execution_role.arn
@@ -32,7 +33,8 @@ resource "aws_ecs_task_definition" "task_definition" {
     {
       name = "Clixx-Web-Task-Container"
       #image     = "${aws_ecr_repository.clixx_ecr_repo.repository_url}:clixxvpc-img-tf-1.0"
-      image       = "${local.dev_tf_cedentials.dev_account_id}.dkr.ecr.${var.AWS_REGION}.amazonaws.com/${var.repository_name}:${var.REPO_TAG}-1.0"
+      # image       = "${local.test_tf_cedentials.test_account_id}.dkr.ecr.${var.AWS_REGION}.amazonaws.com/${var.repository_name}:${var.REPO_TAG}-1.0"
+      image       = "743650199199.dkr.ecr.${var.AWS_REGION}.amazonaws.com/${var.repository_name}:${var.REPO_TAG}-1.0"
       cpu         = 10
       memory      = 300
       networkMode = "bridge"

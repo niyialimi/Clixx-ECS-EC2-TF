@@ -1,7 +1,7 @@
 #==== Retrieve database snapshot ======#
 data "aws_db_snapshot" "db_snapshot" {
   most_recent            = true
-  db_snapshot_identifier = "arn:aws:rds:us-east-1:577701061234:snapshot:wordpressdbclixxsnap"
+  db_snapshot_identifier = "arn:aws:rds:us-east-1:743650199199:snapshot:clixx-rds-tf-final-snapshot"
 }
 
 #==== Create Database Subnet Group ======#

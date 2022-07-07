@@ -89,8 +89,8 @@ sudo docker build -t 'wp-image' .
 sudo docker tag wp-image ${ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${ECR_NAME}:${TAG}-1.0
 
 sudo aws configure <<EOF
-${DEV_ACCESS_KEY}
-${DEV_SECRET_KEY}
+${test_ACCESS_KEY}
+${test_SECRET_KEY}
 ${AWS_REGION}
 
 EOF

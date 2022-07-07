@@ -94,14 +94,14 @@ resource "aws_instance" "docker_ec2" {
   iam_instance_profile = data.aws_iam_instance_profile.ssm-instance-prof.name
   user_data = base64encode(templatefile("${path.module}/scripts/bootstrap.tpl",
     {
-      lb_record      = aws_lb.clixx-ALB-ECS-tf.dns_name,
-      RDS_ENDPOINT   = element(split(":", aws_db_instance.rds_db_tf.endpoint), 0)
-      ECR_NAME       = "${var.repository_name}",
-      DEV_ACCESS_KEY = "${local.dev_tf_cedentials.dev_access_key}",
-      DEV_SECRET_KEY = "${local.dev_tf_cedentials.dev_secret_key}",
-      AWS_REGION     = "${var.AWS_REGION}",
-      ACCOUNT_ID     = "${local.dev_tf_cedentials.dev_account_id}",
-      TAG            = "${var.REPO_TAG}"
+      lb_record       = aws_lb.clixx-ALB-ECS-tf.dns_name,
+      RDS_ENDPOINT    = element(split(":", aws_db_instance.rds_db_tf.endpoint), 0)
+      ECR_NAME        = "${var.repository_name}",
+      test_ACCESS_KEY = "${local.test_tf_cedentials.test_access_key}",
+      test_SECRET_KEY = "${local.test_tf_cedentials.test_secret_key}",
+      AWS_REGION      = "${var.AWS_REGION}",
+      ACCOUNT_ID      = "${local.test_tf_cedentials.test_account_id}",
+      TAG             = "${var.REPO_TAG}"
   }))
 
   tags = {
