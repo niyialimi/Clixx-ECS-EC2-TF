@@ -45,12 +45,6 @@ pipeline {
       //    }
       // }
 
-      // stage('Terraform Destroy Docker Instance'){
-      //    steps {
-      //       sh "terraform destroy -target aws_instance.Docker-Launch"
-      //    }
-      // }
-
       stage('Terraform Destroy'){
          steps {
             sh "terraform destroy -auto-approve"
