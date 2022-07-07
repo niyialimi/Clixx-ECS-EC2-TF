@@ -82,11 +82,11 @@ variable "instance_type" {
 }
 
 variable "bastion_ami_id" {
-  default = "ami-0a27c39dd548772e9"
+  default = "ami-0a68087ab52efaa61"
 }
 
 variable "ecs_ami_id" {
-  default = "ami-0d8fc00d1dec7e49b"
+  default = "ami-0d6bfa6f657a64571"
 }
 
 variable "cluster_name" {
